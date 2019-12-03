@@ -9,90 +9,12 @@
 import UIKit
 import CoreData
 
-class ViewDataVC: UIViewController
-{
-
+class ViewDataVC: UIViewController {
+    
     @IBOutlet weak var Heading: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
-     @IBOutlet weak var UpdateButton: UIButton!
-    
-   
-    @IBAction func done(_ sender: Any)
-    {
-        let VC = self.storyboard?.instantiateViewController(withIdentifier: "SelectActionVC") as! SelectActionVC
-        self.navigationController?.pushViewController(VC, animated: true)
-    }
-    @IBAction func edit(_ sender: Any)
-    {
-        email.isEnabled = true
-        email.backgroundColor = UIColor.white
-        userName.isEnabled = true
-        userName.backgroundColor = UIColor.white
-        password.isEnabled = true
-        password.backgroundColor = UIColor.white
-        Heading.isEnabled = true
-        Heading.backgroundColor = UIColor.white
-        notes.isEditable = true
-        notes.backgroundColor = UIColor.white
-        cancelButton.isHidden = false
-        UpdateButton.isHidden = false
-        doneButton.isHidden = true
-    }
-    
-    @IBAction func cancel(_ sender: Any)
-    {
-        notes.text = notesstr
-        userName.text = usernamestr
-        password.text = passwordstr
-        Heading.text = headingstr
-        email.text = emailstr
-        email.isEnabled = false
-        userName.isEnabled = false
-        password.isEnabled = false
-        Heading.isEnabled = false
-        notes.isEditable = false
-        cancelButton.isHidden = true
-        UpdateButton.isHidden = true
-        doneButton.isHidden = false
-        email.backgroundColor = UIColor.clear
-        userName.backgroundColor = UIColor.clear
-        password.backgroundColor = UIColor.clear
-        Heading.backgroundColor = UIColor.clear
-        notes.backgroundColor = UIColor.clear
-    }
-    
-    @IBAction func update(_ sender: Any)
-    {
-        email.isEnabled = false
-        userName.isEnabled = false
-        password.isEnabled = false
-        Heading.isEnabled = false
-        notes.isEditable = false
-        cancelButton.isHidden = true
-        UpdateButton.isHidden = true
-        doneButton.isHidden = false
-        email.backgroundColor = UIColor.clear
-        userName.backgroundColor = UIColor.clear
-        password.backgroundColor = UIColor.clear
-        Heading.backgroundColor = UIColor.clear
-        notes.backgroundColor = UIColor.clear
-        
-        var updateUserName = ""
-        var updatePassword = ""
-        var updateHeading = ""
-        var updateEmail = ""
-        var updateNotes = ""
-        updateUserName = userName.text!
-        updatePassword = password.text!
-        updateEmail = email.text!
-        updateNotes = notes.text!
-        updateHeading = Heading.text!
-        
-        
-        
-    }
-    
+    @IBOutlet weak var UpdateButton: UIButton!
     @IBOutlet weak var notes: UITextView!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -103,9 +25,11 @@ class ViewDataVC: UIViewController
     @objc var notesstr: String!
     @objc var emailstr: String!
     
-    override func viewDidLoad()
-    {
-        
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         notes.layer.borderWidth = 0.0
         userName.layer.borderWidth = 0.0
@@ -119,7 +43,7 @@ class ViewDataVC: UIViewController
         Heading.layer.borderColor = UIColor.clear.cgColor
         email.layer.borderColor = UIColor.clear.cgColor
         
-       cancelButton.isHidden = true
+        cancelButton.isHidden = true
         UpdateButton.isHidden = true
         doneButton.isHidden = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -138,15 +62,81 @@ class ViewDataVC: UIViewController
         notes.isEditable = false
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    @IBAction func done(_ sender: Any) {
+        let VC = self.storyboard?.instantiateViewController(withIdentifier: "SelectActionVC") as! SelectActionVC
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    @IBAction func edit(_ sender: Any) {
+        email.isEnabled = true
+        email.backgroundColor = UIColor.white
+        userName.isEnabled = true
+        userName.backgroundColor = UIColor.white
+        password.isEnabled = true
+        password.backgroundColor = UIColor.white
+        Heading.isEnabled = true
+        Heading.backgroundColor = UIColor.white
+        notes.isEditable = true
+        notes.backgroundColor = UIColor.white
+        cancelButton.isHidden = false
+        UpdateButton.isHidden = false
+        doneButton.isHidden = true
+    }
+    
+    @IBAction func cancel(_ sender: Any) {
+        notes.text = notesstr
+        userName.text = usernamestr
+        password.text = passwordstr
+        Heading.text = headingstr
+        email.text = emailstr
+        email.isEnabled = false
+        userName.isEnabled = false
+        password.isEnabled = false
+        Heading.isEnabled = false
+        notes.isEditable = false
+        cancelButton.isHidden = true
+        UpdateButton.isHidden = true
+        doneButton.isHidden = false
+        email.backgroundColor = UIColor.clear
+        userName.backgroundColor = UIColor.clear
+        password.backgroundColor = UIColor.clear
+        Heading.backgroundColor = UIColor.clear
+        notes.backgroundColor = UIColor.clear
+    }
+    
+    @IBAction func update(_ sender: Any) {
+        email.isEnabled = false
+        userName.isEnabled = false
+        password.isEnabled = false
+        Heading.isEnabled = false
+        notes.isEditable = false
+        cancelButton.isHidden = true
+        UpdateButton.isHidden = true
+        doneButton.isHidden = false
+        email.backgroundColor = UIColor.clear
+        userName.backgroundColor = UIColor.clear
+        password.backgroundColor = UIColor.clear
+        Heading.backgroundColor = UIColor.clear
+        notes.backgroundColor = UIColor.clear
+        
+        var updateUserName: String
+        var updatePassword = ""
+        var updateHeading = ""
+        var updateEmail = ""
+        var updateNotes = ""
+        updateUserName = userName.text!
+        updatePassword = password.text!
+        updateEmail = email.text!
+        updateNotes = notes.text!
+        updateHeading = Heading.text!
+    }
 }

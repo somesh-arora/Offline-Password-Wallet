@@ -9,40 +9,30 @@
 import UIKit
 import CoreData
 
-class LaunchScreenVC: UIViewController
-{
-
+class LaunchScreenVC: UIViewController {
     @objc var NameArray: [Name] = []
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        do
-        {
-            NameArray = try context.fetch(Name.fetchRequest())
-        }
-        catch
-        {
-            print(error)
-        }
-
-        perform(#selector(LaunchScreenVC.showNavController), with: nil, afterDelay: 3)
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
-    @objc func showNavController()
-    {
-        
-       if(NameArray.count == 0)
-        {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        do {
+            NameArray = try context.fetch(Name.fetchRequest())
+        } catch {
+            print(error)
+        }
+        perform(#selector(LaunchScreenVC.showNavController), with: nil, afterDelay: 3)
+    }
+    
+    @objc func showNavController() {
+        if(NameArray.count == 0) {
             self.performSegue(withIdentifier: "UserNameVC", sender: self)
         }
-        else
-        {
+        else {
             performSegue(withIdentifier: "ViewController", sender: self)
         }
     }
-
-
-   
 }
